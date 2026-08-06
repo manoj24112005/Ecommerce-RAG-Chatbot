@@ -31,9 +31,9 @@ htmlcov/
 .env
 .env.local
 
-# Data files - processed/generated data
-data/processed/
-*.pkl
+# Data files - raw data kept, processed kept for deployment
+# data/processed/
+# *.pkl
 *.pickle
 *.h5
 

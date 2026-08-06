@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .endpoints import orders, products
+from pathlib import Path
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from .endpoints import orders, products, chat
 from ..config import Settings
 
 # Initialize FastAPI app
@@ -22,6 +25,11 @@ app.add_middleware(
 # Include routers
 app.include_router(orders.router, prefix="/orders", tags=["orders"])
 app.include_router(products.router, prefix="/products", tags=["products"])
+app.include_router(chat.router, prefix="/chat", tags=["chat"])
+
+STATIC_DIR = Path(__file__).parent / "static"
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 # Health check endpoint
 @app.get("/health")
@@ -29,10 +37,13 @@ async def health_check():
     """Health check endpoint"""
     return {"status": "healthy"}
 
-# Root endpoint
+# Root endpoint serving Web UI
 @app.get("/")
 async def root():
-    """Root endpoint with API information"""
+    """Root endpoint serving Web UI"""
+    index_path = STATIC_DIR / "index.html"
+    if index_path.exists():
+        return FileResponse(index_path)
     return {
         "name": "E-commerce Dataset API",
         "version": "1.0.0",

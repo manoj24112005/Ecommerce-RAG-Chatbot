@@ -13,6 +13,8 @@ class ECommerceRAG:
                  order_dataset_path: str,
                  model_name: str = "all-MiniLM-L6-v2"):
         """Initialize RAG system"""
+        self.product_dataset_path = product_dataset_path
+        self.order_dataset_path = order_dataset_path
         self.product_df = pd.read_csv(product_dataset_path)
         self.order_df = pd.read_csv(order_dataset_path)
         self.model = SentenceTransformer(model_name)
@@ -62,7 +64,22 @@ class ECommerceRAG:
         self.order_df = self.order_df.sort_values('Order_DateTime', ascending=False)
     
     def _create_product_embeddings(self):
-        """Create product embeddings"""
+        """Create product embeddings (load cached if available)"""
+        from pathlib import Path
+        import pickle
+
+        embeddings_path = Path(self.product_dataset_path).parent / "product_embeddings.pkl"
+        if embeddings_path.exists():
+            try:
+                with open(embeddings_path, 'rb') as f:
+                    self.product_embeddings = pickle.load(f)
+                if len(self.product_embeddings) == len(self.product_df):
+                    logger.info("Loaded pre-computed embeddings successfully.")
+                    return
+            except Exception as e:
+                logger.warning(f"Could not load pre-computed embeddings: {e}")
+
+        logger.info("Generating product embeddings...")
         texts = self.product_df.apply(
             lambda x: f"{x['Product_Title']} {x['Description']}", 
             axis=1
@@ -110,7 +127,7 @@ class ECommerceRAG:
         
         response = "Here are some products that might interest you:\n\n"
         for product in products:
-            response += (f"● {product['Product_Title']}\n"
+            response += (f"- {product['Product_Title']}\n"
                        f"  - Rating: {float(product['Rating']):.1f} stars\n"
                        f"  - Price: ${float(product['Price']):.2f}\n")
             if product.get('Description'):

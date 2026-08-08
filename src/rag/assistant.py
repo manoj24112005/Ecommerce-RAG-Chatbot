@@ -63,7 +63,7 @@ class ECommerceRAG:
         if GEMINI_AVAILABLE and api_key:
             try:
                 genai.configure(api_key=api_key)
-                for m_name in ["gemini-1.5-flash-002", "gemini-1.5-flash-001", "gemini-1.5-pro", "gemini-2.0-flash-exp", "gemini-pro"]:
+                for m_name in ["gemini-2.0-flash", "gemini-flash-latest", "gemini-3.6-flash"]:
                     try:
                         self.gemini_model = genai.GenerativeModel(m_name)
                         logger.info(f"Initialized Gemini LLM ({m_name}) for strictly grounded RAG generation.")
@@ -245,8 +245,8 @@ class ECommerceRAG:
         Stage 3 Generation: Synthesize response using LLM with zero-hallucination guardrails.
         Rejects off-topic / ungrounded queries immediately.
         """
-        # Refusal guardrail for low-similarity or empty context
-        if not retrieved_products or similarity < 0.25 or "NO RELEVANT PRODUCTS FOUND" in augmented_context:
+        # Refusal guardrail for empty context
+        if not retrieved_products or "NO RELEVANT PRODUCTS FOUND" in augmented_context:
             return (
                 "I am restricted to answering questions about products and orders available in our E-Cart catalog.\n\n"
                 "I cannot provide information on unlisted items or off-topic subjects. "
@@ -445,7 +445,7 @@ class ECommerceRAG:
         # 3. GENERATION STAGE (Anti-Hallucination Guardrails)
         text_response = self.generate(query, augmented_context, retrieved_products, similarity)
         
-        attached_products = retrieved_products if similarity >= 0.25 else []
+        attached_products = retrieved_products if retrieved_products else []
         
         return {
             "response": text_response,

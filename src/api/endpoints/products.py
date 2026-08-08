@@ -6,95 +6,94 @@ from ...config import Settings
 router = APIRouter()
 settings = Settings()
 
-# Load product data
-PRODUCT_DF = pd.read_csv(settings.PRODUCT_DATA_PATH)
-PRODUCT_DF.fillna('', inplace=True)
+def get_product_df():
+    df = pd.read_csv(settings.PRODUCT_DATA_PATH)
+    df.fillna('', inplace=True)
+    return df
+
+@router.get("/all", response_model=List[Dict[str, Any]])
+async def get_all_products(
+    category: Optional[str] = None,
+    brand: Optional[str] = None,
+    max_price: Optional[float] = None,
+    sort_by: Optional[str] = Query(default="rating_desc")
+):
+    """Retrieve all products with optional filters"""
+    df = get_product_df()
+    
+    if category and category.lower() != "all":
+        df = df[df['Category'].str.contains(category, case=False, na=False)]
+        
+    if brand:
+        df = df[df['Brand'].str.contains(brand, case=False, na=False)]
+        
+    if max_price:
+        df = df[df['Price'] <= max_price]
+        
+    if sort_by == "price_asc":
+        df = df.sort_values('Price', ascending=True)
+    elif sort_by == "price_desc":
+        df = df.sort_values('Price', ascending=False)
+    else:
+        df = df.sort_values('Rating', ascending=False)
+        
+    return df.to_dict('records')
 
 @router.get("/search", response_model=List[Dict[str, Any]])
 async def search_products(
-    query: str = Query(..., min_length=2),
+    query: str = Query(..., min_length=1),
     category: Optional[str] = None,
     min_rating: Optional[float] = None,
     max_price: Optional[float] = None,
-    limit: int = Query(default=10, ge=1, le=50)
+    limit: int = Query(default=20, ge=1, le=50)
 ):
-    """
-    Search products with various filters
-    """
-    # Start with all products
-    filtered_products = PRODUCT_DF.copy()
+    """Search products with various filters"""
+    df = get_product_df()
     
-    # Apply search query across multiple fields
     if query:
         search_mask = (
-            filtered_products['Product_Title'].str.contains(query, case=False, na=False) |
-            filtered_products['Description'].str.contains(query, case=False, na=False) |
-            filtered_products['Category'].str.contains(query, case=False, na=False)
+            df['Product_Title'].str.contains(query, case=False, na=False) |
+            df['Description'].str.contains(query, case=False, na=False) |
+            df['Category'].str.contains(query, case=False, na=False) |
+            df['Brand'].str.contains(query, case=False, na=False)
         )
-        filtered_products = filtered_products[search_mask]
+        df = df[search_mask]
     
-    # Apply category filter
-    if category:
-        filtered_products = filtered_products[
-            filtered_products['Category'].str.contains(category, case=False, na=False)
-        ]
+    if category and category.lower() != "all":
+        df = df[df['Category'].str.contains(category, case=False, na=False)]
     
-    # Apply rating filter
     if min_rating is not None:
-        filtered_products = filtered_products[
-            filtered_products['Rating'] >= min_rating
-        ]
+        df = df[df['Rating'] >= min_rating]
     
-    # Apply price filter
     if max_price is not None:
-        filtered_products = filtered_products[
-            filtered_products['Price'] <= max_price
-        ]
+        df = df[df['Price'] <= max_price]
     
-    if filtered_products.empty:
-        raise HTTPException(
-            status_code=404,
-            detail="No products found matching the criteria"
-        )
-    
-    # Sort by relevance (currently using rating as a proxy)
-    filtered_products = filtered_products.sort_values('Rating', ascending=False)
-    
-    # Limit results
-    filtered_products = filtered_products.head(limit)
-    
-    return filtered_products.to_dict('records')
+    df = df.sort_values('Rating', ascending=False).head(limit)
+    return df.to_dict('records')
+
+@router.get("/detail/{product_id}", response_model=Dict[str, Any])
+async def get_product_by_id(product_id: int):
+    """Retrieve single product details by ID"""
+    df = get_product_df()
+    match = df[df['Product_ID'] == product_id]
+    if match.empty:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return match.iloc[0].to_dict()
 
 @router.get("/category/{category}", response_model=List[Dict[str, Any]])
 async def get_products_by_category(
     category: str,
-    limit: int = Query(default=10, ge=1, le=50),
+    limit: int = Query(default=20, ge=1, le=50),
     min_rating: Optional[float] = None
 ):
-    """
-    Retrieve products in a specific category
-    """
-    # Filter by category
-    category_products = PRODUCT_DF[
-        PRODUCT_DF['Category'].str.contains(category, case=False, na=False)
-    ].copy()
+    """Retrieve products in a specific category"""
+    df = get_product_df()
+    category_products = df[df['Category'].str.contains(category, case=False, na=False)].copy()
     
-    if category_products.empty:
-        raise HTTPException(
-            status_code=404,
-            detail=f"No products found in category '{category}'"
-        )
-    
-    # Apply rating filter if specified
     if min_rating is not None:
-        category_products = category_products[
-            category_products['Rating'] >= min_rating
-        ]
+        category_products = category_products[category_products['Rating'] >= min_rating]
     
-    # Sort by rating and limit results
-    category_products = category_products.sort_values('Rating', ascending=False)
-    category_products = category_products.head(limit)
-    
+    category_products = category_products.sort_values('Rating', ascending=False).head(limit)
     return category_products.to_dict('records')
 
 @router.get("/top-rated", response_model=List[Dict[str, Any]])
@@ -103,61 +102,11 @@ async def get_top_rated_products(
     category: Optional[str] = None,
     limit: int = Query(default=10, ge=1, le=50)
 ):
-    """
-    Get top-rated products with optional category filter
-    """
-    # Filter by rating
-    top_products = PRODUCT_DF[PRODUCT_DF['Rating'] >= min_rating].copy()
+    """Get top-rated products"""
+    df = get_product_df()
+    top_products = df[df['Rating'] >= min_rating].copy()
+    if category and category.lower() != "all":
+        top_products = top_products[top_products['Category'].str.contains(category, case=False, na=False)]
     
-    # Apply category filter if specified
-    if category:
-        top_products = top_products[
-            top_products['Category'].str.contains(category, case=False, na=False)
-        ]
-    
-    if top_products.empty:
-        raise HTTPException(
-            status_code=404,
-            detail="No products found matching the criteria"
-        )
-    
-    # Sort by rating and limit results
-    top_products = top_products.sort_values('Rating', ascending=False)
-    top_products = top_products.head(limit)
-    
+    top_products = top_products.sort_values('Rating', ascending=False).head(limit)
     return top_products.to_dict('records')
-
-@router.get("/recommendations/{product_id}", response_model=List[Dict[str, Any]])
-async def get_product_recommendations(
-    product_id: int,
-    limit: int = Query(default=5, ge=1, le=20)
-):
-    """
-    Get product recommendations based on category and rating
-    """
-    # Get the target product
-    try:
-        target_product = PRODUCT_DF[PRODUCT_DF['Product_ID'] == product_id].iloc[0]
-    except (IndexError, KeyError):
-        raise HTTPException(
-            status_code=404,
-            detail=f"Product with ID {product_id} not found"
-        )
-    
-    # Find similar products in the same category
-    similar_products = PRODUCT_DF[
-        (PRODUCT_DF['Category'] == target_product['Category']) &
-        (PRODUCT_DF['Product_ID'] != product_id)
-    ].copy()
-    
-    if similar_products.empty:
-        raise HTTPException(
-            status_code=404,
-            detail="No similar products found"
-        )
-    
-    # Sort by rating and limit results
-    similar_products = similar_products.sort_values('Rating', ascending=False)
-    similar_products = similar_products.head(limit)
-    
-    return similar_products.to_dict('records')

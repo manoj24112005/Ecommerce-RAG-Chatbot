@@ -1,12 +1,12 @@
-# Core dependencies
+# Core web and API dependencies
 fastapi>=0.95.1
 uvicorn>=0.22.0
 pandas>=2.0.0
 pydantic-settings>=2.0.0
 python-dotenv>=1.0.0
 click>=8.0.0
+numpy>=1.24.0
+scikit-learn>=1.2.0
 
-# Machine Learning and NLP
-transformers>=4.29.2
-torch>=2.0.0
-sentence-transformers>=2.2.2
+# LLM and Embedding API
+google-generativeai>=0.3.0

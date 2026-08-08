@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce AI Assistant</title>
+    <title>E-Cart Tech Hub | Electronics & AI Advisor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --primary-glow: rgba(99, 102, 241, 0.35);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --user-msg-bg: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
-            --bot-msg-bg: rgba(30, 41, 59, 0.85);
-            --accent-gold: #f59e0b;
+            /* COLOR PSYCHOLOGY PALETTE */
+            --bg-deep: #090d16;             /* Trust Deep Navy */
+            --surface-card: #111827;        /* Sleek Slate Surface */
+            --surface-hover: #1f293d;       /* Card Hover State */
+            --border-card: rgba(255, 255, 255, 0.08);
+            
+            --emerald-buy: #059669;          /* Conversion Green CTA */
+            --emerald-hover: #047857;
+            --emerald-glow: rgba(5, 150, 105, 0.35);
+
+            --flipkart-blue: #2874f0;        /* Brand Accent */
+            --amber-gold: #f59e0b;          /* Rating & Highlight Amber */
+            --coral-red: #ef4444;            /* Discount Coral */
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+
+            --user-msg-bg: linear-gradient(135deg, #2874f0 0%, #1d4ed8 100%);
+            --bot-msg-bg: rgba(17, 24, 39, 0.95);
         }
 
         * {
@@ -29,138 +38,439 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            overflow-x: hidden;
-        }
-
-        .chat-container {
-            width: 100%;
-            max-width: 900px;
-            height: 90vh;
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px var(--primary-glow);
-            display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
-        /* Header */
-        header {
-            padding: 1.25rem 1.75rem;
-            background: rgba(15, 23, 42, 0.6);
-            border-bottom: 1px solid var(--card-border);
+        /* Top Navbar */
+        .navbar {
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-card);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0.85rem 1.75rem;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
-        .header-title {
+        .brand-logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.65rem;
+            text-decoration: none;
+            cursor: pointer;
         }
 
-        .bot-avatar-header {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo-box {
+            background: var(--flipkart-blue);
+            color: var(--amber-gold);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.35rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(40, 116, 240, 0.4);
+            font-style: italic;
+        }
+
+        .brand-title {
+            font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-family: 'Outfit', sans-serif;
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        .title-text h1 {
-            font-family: 'Outfit', sans-serif;
             font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+            color: #fff;
         }
 
-        .title-text p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .online-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #10b981;
-        }
-
-        /* Customer ID Section */
-        .customer-setting {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(15, 23, 42, 0.7);
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-        }
-
-        .customer-setting label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .customer-setting input {
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            width: 80px;
+        .brand-subtitle {
+            font-size: 0.72rem;
+            color: var(--amber-gold);
             font-weight: 600;
-            font-size: 0.85rem;
+        }
+
+        .nav-search {
+            flex: 1;
+            max-width: 580px;
+            position: relative;
+        }
+
+        .nav-search input {
+            width: 100%;
+            background: rgba(31, 41, 61, 0.8);
+            border: 1px solid var(--border-card);
+            padding: 0.7rem 1rem 0.7rem 2.7rem;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-search input:focus {
+            border-color: var(--flipkart-blue);
+            box-shadow: 0 0 0 3px rgba(40, 116, 240, 0.25);
+        }
+
+        .nav-search svg {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .cust-id-select {
+            background: rgba(31, 41, 61, 0.8);
+            border: 1px solid var(--border-card);
+            color: var(--text-primary);
+            padding: 0.5rem 0.85rem;
+            border-radius: 10px;
+            font-size: 0.84rem;
             outline: none;
         }
 
-        /* Chat Body */
-        .chat-body {
-            flex: 1;
-            padding: 1.5rem;
-            overflow-y: auto;
+        .cart-btn {
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            scroll-behavior: smooth;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px var(--emerald-glow);
         }
 
-        .chat-body::-webkit-scrollbar {
-            width: 6px;
+        .cart-btn:hover {
+            background: var(--emerald-hover);
+            transform: translateY(-1px);
         }
 
-        .chat-body::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
+        .cart-badge {
+            background: #fff;
+            color: var(--emerald-buy);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
             border-radius: 10px;
         }
 
-        .msg-row {
+        /* Sticky Category Navigation Bar */
+        .category-nav-bar {
+            background: rgba(17, 24, 39, 0.8);
+            border-bottom: 1px solid var(--border-card);
+            padding: 0.75rem 1.75rem;
             display: flex;
-            gap: 0.75rem;
-            max-width: 85%;
-            animation: fadeIn 0.3s ease-in-out forwards;
+            align-items: center;
+            gap: 0.65rem;
+            overflow-x: auto;
+            position: sticky;
+            top: 61px;
+            z-index: 90;
+        }
+
+        .category-nav-bar::-webkit-scrollbar { display: none; }
+
+        .cat-tab {
+            background: rgba(31, 41, 61, 0.6);
+            border: 1px solid var(--border-card);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .cat-tab.active, .cat-tab:hover {
+            background: var(--flipkart-blue);
+            color: #fff;
+            border-color: var(--flipkart-blue);
+            box-shadow: 0 4px 12px rgba(40, 116, 240, 0.3);
+        }
+
+        /* Main Page Layout */
+        .page-container {
+            max-width: 1350px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #0b1938 0%, #1e3a8a 50%, #059669 100%);
+            border-radius: 24px;
+            padding: 2.2rem 2.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            margin-bottom: 2rem;
+        }
+
+        .banner-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--amber-gold);
+            margin-bottom: 0.4rem;
+        }
+
+        .banner-desc {
+            font-size: 0.98rem;
+            color: #e2e8f0;
+            margin-bottom: 1.2rem;
+        }
+
+        .banner-btn {
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .banner-btn:hover {
+            background: var(--emerald-hover);
+            transform: scale(1.04);
+        }
+
+        /* Category Section Block */
+        .category-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-all-link {
+            color: var(--flipkart-blue);
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .view-all-link:hover { text-decoration: underline; }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* CLICKABLE PRODUCT CARD */
+        .product-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            background: var(--surface-hover);
+            border-color: rgba(40, 116, 240, 0.5);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-img-box {
+            height: 210px;
+            width: 100%;
+            background: rgba(9, 13, 22, 0.7);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .product-card:hover .card-img-box img {
+            transform: scale(1.08);
+        }
+
+        .brand-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-card);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: var(--coral-red);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.25rem 0.55rem;
+            border-radius: 8px;
+        }
+
+        .card-body {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.8rem;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .star-box {
+            background: var(--emerald-buy);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.15rem 0.45rem;
+            border-radius: 6px;
+        }
+
+        .review-count {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .spec-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .spec-tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 6px;
+        }
+
+        .card-price-row {
+            margin-top: auto;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .price-curr {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .price-orig {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .btn-card-buy {
+            width: 100%;
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-card-buy:hover {
+            background: var(--emerald-hover);
+        }
+
+        /* FULL PAGE PRODUCT DETAIL VIEW */
+        .full-product-page {
+            display: none;
+            padding: 1.5rem 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .full-product-page.active {
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -168,319 +478,1044 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .msg-row.user {
-            align-self: flex-end;
-            flex-direction: row-reverse;
+        .back-btn {
+            background: rgba(31, 41, 61, 0.8);
+            border: 1px solid var(--border-card);
+            color: var(--text-primary);
+            padding: 0.55rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s ease;
         }
 
-        .msg-row.bot {
-            align-self: flex-start;
+        .back-btn:hover {
+            background: var(--flipkart-blue);
+            border-color: var(--flipkart-blue);
         }
 
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 2.5rem;
+            background: var(--surface-card);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .detail-layout { grid-template-columns: 1fr; }
+        }
+
+        .detail-img-box {
+            width: 100%;
+            height: 420px;
+            background: rgba(9, 13, 22, 0.7);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+        }
+
+        .detail-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-info-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        .detail-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .stock-badge {
+            background: rgba(5, 150, 105, 0.15);
+            color: var(--emerald-buy);
+            border: 1px solid var(--emerald-buy);
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .detail-price-box {
+            background: rgba(9, 13, 22, 0.5);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price-big {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--amber-gold);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .btn-buy-now {
+            flex: 1;
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px var(--emerald-glow);
+        }
+
+        .btn-buy-now:hover { background: var(--emerald-hover); }
+
+        .btn-ask-ai {
+            background: rgba(40, 116, 240, 0.15);
+            border: 1px solid var(--flipkart-blue);
+            color: #fff;
+            padding: 0.85rem 1.2rem;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Specifications & Reviews Tabs */
+        .detail-sections-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .detail-sections-grid { grid-template-columns: 1fr; }
+        }
+
+        .spec-table-box, .reviews-box {
+            background: var(--surface-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+
+        .box-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 0.5rem;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .spec-table td {
+            padding: 0.65rem 0.4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-table tr:last-child td { border-bottom: none; }
+
+        .spec-key {
+            color: var(--text-secondary);
+            font-weight: 600;
+            width: 40%;
+        }
+
+        .spec-val {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .review-card {
+            background: rgba(9, 13, 22, 0.5);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .review-user-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.35rem;
+        }
+
+        .review-user {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .review-stars {
+            color: var(--amber-gold);
+            font-size: 0.82rem;
+        }
+
+        .review-text {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Cart Drawer */
+        .cart-drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-drawer-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -430px; bottom: 0;
+            width: 410px;
+            max-width: 90vw;
+            background: #0f172a;
+            border-left: 1px solid var(--border-card);
+            z-index: 201;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .cart-drawer.active { right: 0; }
+
+        .drawer-header {
+            padding: 1.2rem;
+            background: rgba(17, 24, 39, 0.9);
+            border-bottom: 1px solid var(--border-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; }
+        .close-drawer { background: transparent; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+
+        .drawer-items { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+
+        .cart-item {
+            display: flex;
+            gap: 0.8rem;
+            background: rgba(31, 41, 61, 0.5);
+            padding: 0.75rem;
+            border-radius: 14px;
+            border: 1px solid var(--border-card);
+        }
+
+        .cart-item img { width: 65px; height: 65px; object-fit: cover; border-radius: 10px; }
+        .cart-item-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .cart-item-price { font-weight: 800; color: var(--amber-gold); font-size: 0.9rem; }
+
+        .drawer-footer { padding: 1.2rem; background: rgba(17, 24, 39, 0.9); border-top: 1px solid var(--border-card); }
+        .total-row { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700; }
+
+        .btn-checkout {
+            width: 100%;
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* Floating RAG Chat Widget */
+        .chat-fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #059669 0%, #2874f0 100%);
+            color: #fff;
+            border: none;
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.5);
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            flex-shrink: 0;
+            z-index: 150;
+            transition: transform 0.25s ease;
         }
 
-        .msg-row.user .avatar {
-            background: #3b82f6;
-        }
+        .chat-fab:hover { transform: scale(1.1); }
 
-        .msg-row.bot .avatar {
-            background: var(--primary);
-        }
-
-        .bubble {
-            padding: 1rem 1.25rem;
-            border-radius: 18px;
-            font-size: 0.95rem;
-            line-height: 1.55;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        .msg-row.user .bubble {
-            background: var(--user-msg-bg);
-            border-bottom-right-radius: 4px;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .msg-row.bot .bubble {
-            background: var(--bot-msg-bg);
-            border: 1px solid var(--card-border);
-            border-bottom-left-radius: 4px;
-        }
-
-        /* Quick Suggestions */
-        .suggestions {
-            padding: 0.75rem 1.5rem;
+        .chat-widget-box {
+            position: fixed;
+            bottom: 5.5rem;
+            right: 1.5rem;
+            width: 440px;
+            max-width: 94vw;
+            height: 600px;
+            max-height: 82vh;
+            background: rgba(11, 19, 41, 0.96);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
             display: flex;
-            gap: 0.6rem;
-            overflow-x: auto;
-            background: rgba(15, 23, 42, 0.3);
-            border-top: 1px solid var(--card-border);
+            flex-direction: column;
+            z-index: 151;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .suggestions::-webkit-scrollbar {
+        .chat-widget-box.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+
+        .widget-header {
+            padding: 1.1rem 1.3rem;
+            background: rgba(17, 24, 39, 0.95);
+            border-bottom: 1px solid var(--border-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--emerald-buy);
+            color: #fff;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .widget-body {
+            flex: 1;
+            padding: 1.1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            scroll-behavior: smooth;
+        }
+
+        .widget-body::-webkit-scrollbar {
+            width: 5px;
+        }
+        .widget-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        .widget-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-msg { display: flex; gap: 0.6rem; max-width: 90%; font-size: 0.88rem; line-height: 1.45; }
+        .chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+        .chat-msg.bot { align-self: flex-start; }
+
+        .msg-bubble { padding: 0.8rem 1.1rem; border-radius: 18px; white-space: pre-wrap; word-break: break-word; }
+        .chat-msg.user .msg-bubble { background: var(--user-msg-bg); color: #fff; border-bottom-right-radius: 4px; }
+        .chat-msg.bot .msg-bubble { background: var(--bot-msg-bg); border: 1px solid var(--border-card); color: #e2e8f0; border-bottom-left-radius: 4px; }
+
+        .chat-products-container { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.4rem; }
+
+        .chat-mini-card {
+            background: rgba(17, 24, 39, 0.95);
+            border: 1px solid rgba(5, 150, 105, 0.4);
+            border-radius: 14px;
+            padding: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-mini-card:hover {
+            background: rgba(5, 150, 105, 0.15);
+            border-color: var(--emerald-buy);
+            transform: scale(1.02);
+        }
+
+        .chat-mini-card img { width: 55px; height: 55px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
+        .chat-mini-title { font-size: 0.82rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; line-height: 1.3; }
+        .chat-mini-price { font-size: 0.88rem; font-weight: 800; color: var(--amber-gold); }
+
+        .chat-mini-add-btn {
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .widget-chips {
+            padding: 0.65rem 0.8rem;
+            display: flex;
+            gap: 0.45rem;
+            overflow-x: auto;
+            background: rgba(9, 13, 22, 0.85);
+            border-top: 1px solid var(--border-card);
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .widget-chips::-webkit-scrollbar {
             display: none;
         }
 
-        .chip {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-            padding: 0.45rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-        }
+        .w-chip { background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-card); color: var(--text-secondary); padding: 0.38rem 0.8rem; border-radius: 16px; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; }
+        .w-chip:hover { background: var(--emerald-buy); color: #fff; border-color: var(--emerald-buy); }
 
-        .chip:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--primary-glow);
-        }
-
-        /* Input Area */
-        footer {
-            padding: 1.25rem 1.5rem;
-            background: rgba(15, 23, 42, 0.8);
-            border-top: 1px solid var(--card-border);
-        }
-
-        .input-box {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 0.4rem 0.5rem 0.4rem 1rem;
-            transition: border-color 0.2s ease;
-        }
-
-        .input-box:focus-within {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-glow);
-        }
-
-        .input-box input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            outline: none;
-            padding: 0.6rem 0;
-        }
-
-        .send-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .send-btn:hover {
-            background: var(--primary-hover);
-            transform: scale(1.05);
-        }
-
-        /* Typing Dots */
-        .typing-dots {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 0.5rem;
-        }
-
-        .typing-dots div {
-            width: 6px;
-            height: 6px;
-            background: var(--text-muted);
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out both;
-        }
-
-        .typing-dots div:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dots div:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1.0); }
-        }
+        .widget-input { padding: 0.8rem; background: rgba(17, 24, 39, 0.95); border-top: 1px solid var(--border-card); display: flex; gap: 0.5rem; }
+        .widget-input input { flex: 1; background: rgba(9, 13, 22, 0.8); border: 1px solid var(--border-card); color: #fff; padding: 0.6rem 0.9rem; border-radius: 12px; font-size: 0.85rem; outline: none; }
+        .widget-send { background: var(--emerald-buy); color: #fff; border: none; width: 38px; height: 38px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
 
-    <div class="chat-container">
-        <!-- Header -->
-        <header>
-            <div class="header-title">
-                <div class="bot-avatar-header">AI</div>
-                <div class="title-text">
-                    <h1>E-Commerce Shopping Assistant</h1>
-                    <p><span class="online-dot"></span> Semantic RAG Search Active</p>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand-logo" onclick="showHomePage()">
+            <div class="logo-box">E-Cart</div>
+            <div>
+                <div class="brand-title">Tech Hub</div>
+                <div class="brand-subtitle">Smart RAG Store</div>
+            </div>
+        </div>
+
+        <div class="nav-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search 45+ laptops, cameras, audio, chargers, smartphones in ₹..." onkeyup="handleSearch(event)">
+        </div>
+
+        <div class="nav-actions">
+            <select class="cust-id-select" id="custIdSelect">
+                <option value="37077">Customer #37077</option>
+                <option value="45120">Customer #45120</option>
+                <option value="89102">Customer #89102</option>
+            </select>
+
+            <button class="cart-btn" onclick="toggleCartDrawer()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                Cart <span class="cart-badge" id="cartCount">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sticky Category Navigation Bar -->
+    <div class="category-nav-bar">
+        <div class="cat-tab active" onclick="filterCategoryTab('all', this)">✨ All Tech</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Smartphones', this)">📱 Smartphones</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Laptops', this)">💻 Laptops & PCs</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Cameras', this)">📷 Cameras & Gear</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Audio', this)">🎧 Audio & ANC</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Smartwatches', this)">⌚ Smartwatches</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Chargers', this)">⚡ Chargers & Power</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Cables & Adapters', this)">🔌 Cables & Adapters</div>
+        <div class="cat-tab" onclick="filterCategoryTab('Gaming & Accessories', this)">🎮 Gaming & Accessories</div>
+    </div>
+
+    <!-- MAIN HOME PAGE VIEW -->
+    <div class="page-container" id="homePage">
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+            <div>
+                <div class="banner-title">E-Cart Grand Tech Festival ⚡</div>
+                <div class="banner-desc">Explore 45+ premium electronics with full specs, real buyer reviews, and 1-click order!</div>
+                <button class="banner-btn" onclick="filterCategoryTab('Laptops')">Explore M3 & RTX Laptops</button>
+            </div>
+        </div>
+
+        <!-- CATEGORY SECTIONS CONTAINER -->
+        <div id="categorySections">
+            <!-- Dynamically populated category rows -->
+        </div>
+    </div>
+
+    <!-- FULL PAGE PRODUCT DETAIL VIEW -->
+    <div class="page-container full-product-page" id="fullProductPage">
+        <button class="back-btn" onclick="showHomePage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Store
+        </button>
+
+        <div class="detail-layout">
+            <div class="detail-img-box">
+                <img id="detailImg" src="" alt="Product Image">
+            </div>
+
+            <div class="detail-info-box">
+                <h1 class="detail-title" id="detailTitle">Product Title</h1>
+
+                <div class="detail-meta">
+                    <div style="background:var(--emerald-buy); color:#fff; font-size:0.82rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:6px;" id="detailRating">
+                        ★ 4.8
+                    </div>
+                    <span style="font-size:0.85rem; color:var(--text-secondary);" id="detailReviewsCount">(1,420 ratings)</span>
+                    <span class="stock-badge">✓ In Stock & Ready to Ship</span>
                 </div>
-            </div>
 
-            <div class="customer-setting">
-                <label for="customerId">Customer ID:</label>
-                <input type="number" id="customerId" value="37077" placeholder="e.g. 37077">
-            </div>
-        </header>
+                <div class="detail-price-box">
+                    <div>
+                        <div class="price-big" id="detailPrice">₹0</div>
+                        <div style="font-size:0.85rem; color:var(--text-secondary);">MRP: <s id="detailOrigPrice">₹0</s> <span style="color:var(--coral-red); font-weight:800;" id="detailDiscount">10% OFF</span></div>
+                    </div>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">Inclusive of all taxes</div>
+                </div>
 
-        <!-- Messages Body -->
-        <div class="chat-body" id="chatBody">
-            <div class="msg-row bot">
-                <div class="avatar">AI</div>
-                <div class="bubble">
-Hello! I'm your AI Shopping & Order Assistant. 🛒
+                <div style="font-size:0.9rem; line-height:1.6; color:#cbd5e1; margin-bottom:1.5rem;" id="detailDescription">
+                    Product description...
+                </div>
 
-How can I help you today?
-- Search products: *"Show me acoustic guitars"* or *"Microphones under $200"*
-- Check orders: *"Show my orders"* or *"Fetch recent high-priority orders"*
+                <div class="detail-actions">
+                    <button class="btn-buy-now" id="detailBuyBtn">Add to Cart & Checkout</button>
+                    <button class="btn-ask-ai" onclick="toggleChatWidget(); sendQuickQuery('Tell me more about ' + currentProductTitle);">🤖 Ask AI Chatbot</button>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Suggestions -->
-        <div class="suggestions">
-            <div class="chip" onclick="sendQuickQuery('Show me top rated acoustic guitars')">🎸 Top Guitars</div>
-            <div class="chip" onclick="sendQuickQuery('Microphones under $200')">🎙️ Microphones &lt; $200</div>
-            <div class="chip" onclick="sendQuickQuery('Show high priority orders')">🔥 High Priority Orders</div>
-            <div class="chip" onclick="sendQuickQuery('Show my orders')">📦 My Last Order</div>
+        <!-- Specifications & Reviews Grid -->
+        <div class="detail-sections-grid">
+            <!-- Full Technical Specifications Table -->
+            <div class="spec-table-box">
+                <div class="box-heading">⚡ Full Technical Specifications</div>
+                <table class="spec-table" id="specTable">
+                    <!-- Populated dynamically -->
+                </table>
+            </div>
+
+            <!-- Customer Reviews Section -->
+            <div class="reviews-box">
+                <div class="box-heading">⭐ Verified Buyer Reviews & Ratings</div>
+                <div id="reviewsContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h3>Shopping Cart (<span id="cartDrawerCount">0</span>)</h3>
+            <button class="close-drawer" onclick="toggleCartDrawer()">&times;</button>
+        </div>
+        <div class="drawer-items" id="drawerItems">
+            <!-- Items rendered dynamically -->
+        </div>
+        <div class="drawer-footer">
+            <div class="total-row">
+                <span>Total Amount:</span>
+                <span id="cartTotal" style="color:var(--amber-gold);">₹0</span>
+            </div>
+            <button class="btn-checkout" onclick="checkout()">Proceed to Checkout (₹)</button>
+        </div>
+    </div>
+
+    <!-- Floating RAG Chatbot FAB -->
+    <button class="chat-fab" onclick="toggleChatWidget()" title="Ask RAG Electronics AI">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <!-- Floating Chat Widget -->
+    <div class="chat-widget-box" id="chatWidget">
+        <div class="widget-header">
+            <div class="bot-profile">
+                <div class="bot-avatar">EC</div>
+                <div style="display:flex; flex-direction:column;">
+                    <h4 style="font-size:0.95rem; font-weight:700;">E-Cart AI Advisor</h4>
+                    <p style="font-size:0.72rem; color:var(--emerald-buy);"><span style="width:7px;height:7px;background:var(--emerald-buy);border-radius:50%;display:inline-block"></span> Strictly Grounded RAG</p>
+                </div>
+            </div>
+            <button class="close-chat" onclick="toggleChatWidget()">&times;</button>
         </div>
 
-        <!-- Input Footer -->
-        <footer>
-            <div class="input-box">
-                <input type="text" id="userInput" placeholder="Ask about products, ratings, or order status..." onkeydown="handleKeyDown(event)">
-                <button class="send-btn" onclick="sendMessage()" id="sendBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
+        <div class="widget-body" id="widgetBody">
+            <div class="chat-msg bot">
+                <div class="msg-bubble">
+Namaste! 🙏 I am your **E-Cart Tech Advisor**.
+
+I can recommend **individual products** or build complete **Gaming Setup Bundles** (Gaming PC, OLED Monitor, Mouse, Keyboard & Headset) strictly from our store catalog!
+
+Try asking:
+- *"I need to build a gaming setup"*
+- *"Recommend a fast laptop for video editing"*
+- *"Best 4K camera for vlogging"*
+- *"Show my order status"*
+                </div>
             </div>
-        </footer>
+        </div>
+
+        <div class="widget-chips">
+            <div class="w-chip" onclick="sendQuickQuery('I need to build a gaming setup')">🎮 Build Gaming Setup</div>
+            <div class="w-chip" onclick="sendQuickQuery('Fast laptop for video editing')">💻 Laptop Video Editing</div>
+            <div class="w-chip" onclick="sendQuickQuery('Best 4K camera')">📷 4K Camera</div>
+            <div class="w-chip" onclick="sendQuickQuery('65W fast charger cable')">⚡ 65W Charger</div>
+            <div class="w-chip" onclick="sendQuickQuery('Show my orders')">📦 My Orders</div>
+        </div>
+
+        <div class="widget-input">
+            <input type="text" id="widgetInput" placeholder="Ask about laptops, cameras, audio, or chargers..." onkeydown="if(event.key==='Enter') sendWidgetMessage()">
+            <button class="widget-send" onclick="sendWidgetMessage()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
     </div>
 
     <script>
-        const chatBody = document.getElementById('chatBody');
-        const userInput = document.getElementById('userInput');
-        const customerIdInput = document.getElementById('customerId');
+        let allProducts = [];
+        let cart = [];
+        let currentProductTitle = '';
+        const apiBase = window.location.port === '8000' ? '' : 'http://localhost:8000';
 
-        function appendMessage(sender, text) {
-            const row = document.createElement('div');
-            row.className = `msg-row ${sender}`;
-            
-            const avatar = document.createElement('div');
-            avatar.className = 'avatar';
-            avatar.innerText = sender === 'user' ? 'YOU' : 'AI';
-
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            bubble.innerText = text;
-
-            row.appendChild(avatar);
-            row.appendChild(bubble);
-            chatBody.appendChild(row);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function showTyping() {
-            const row = document.createElement('div');
-            row.className = 'msg-row bot';
-            row.id = 'typingIndicator';
-
-            const avatar = document.createElement('div');
-            avatar.className = 'avatar';
-            avatar.innerText = 'AI';
-
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            bubble.innerHTML = `<div class="typing-dots"><div></div><div></div><div></div></div>`;
-
-            row.appendChild(avatar);
-            row.appendChild(bubble);
-            chatBody.appendChild(row);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function removeTyping() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
-        }
-
-        async function sendMessage() {
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            appendMessage('user', text);
-            userInput.value = '';
-
-            showTyping();
-
-            const custId = customerIdInput.value ? parseInt(customerIdInput.value) : null;
-
+        async function fetchProducts() {
             try {
-                const apiHost = (window.location.port === '8000') ? '' : 'http://localhost:8000';
-                const res = await fetch(`${apiHost}/chat/query`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        query: text,
-                        customer_id: custId
-                    })
+                const res = await fetch(`${apiBase}/products/all`);
+                allProducts = await res.json();
+                renderCategorySections(allProducts);
+            } catch (err) {
+                console.error("Error fetching products:", err);
+            }
+        }
+
+        function renderCategorySections(products, activeCat = 'all') {
+            const container = document.getElementById('categorySections');
+            container.innerHTML = '';
+
+            const categories = [
+                { name: 'Smartphones', icon: '📱', title: 'Smartphones & Flagships' },
+                { name: 'Laptops', icon: '💻', title: 'Laptops & Workstations' },
+                { name: 'Cameras', icon: '📷', title: 'Cameras & Photography' },
+                { name: 'Audio', icon: '🎧', title: 'Wireless Audio & ANC Headphones' },
+                { name: 'Smartwatches', icon: '⌚', title: 'Smartwatches & Fitness Trackers' },
+                { name: 'Chargers', icon: '⚡', title: 'Fast Chargers & Power Banks' },
+                { name: 'Cables & Adapters', icon: '🔌', title: 'High-Speed Cables & Adapters' },
+                { name: 'Gaming & Accessories', icon: '🎮', title: 'Gaming Consoles & Peripherals' }
+            ];
+
+            const filteredCategories = activeCat === 'all' 
+                ? categories 
+                : categories.filter(c => c.name.toLowerCase() === activeCat.toLowerCase());
+
+            if (filteredCategories.length === 0) {
+                // If custom search or unrecognized category, render single grid
+                renderSingleGrid(products, `Filtered Products`);
+                return;
+            }
+
+            filteredCategories.forEach(cat => {
+                const catProducts = products.filter(p => p.Category && p.Category.toLowerCase().includes(cat.name.toLowerCase()));
+                if (catProducts.length === 0) return;
+
+                const sec = document.createElement('div');
+                sec.className = 'category-section';
+
+                const secHeader = document.createElement('div');
+                secHeader.className = 'section-header';
+                secHeader.innerHTML = `
+                    <div class="section-title"><span>${cat.icon}</span> ${cat.title}</div>
+                    <span class="view-all-link" onclick="filterCategoryTab('${cat.name}')">View All ${catProducts.length} Items →</span>
+                `;
+
+                const grid = document.createElement('div');
+                grid.className = 'product-grid';
+
+                catProducts.forEach(p => {
+                    grid.appendChild(createProductCard(p));
                 });
 
-                removeTyping();
+                sec.appendChild(secHeader);
+                sec.appendChild(grid);
+                container.appendChild(sec);
+            });
+        }
+
+        function renderSingleGrid(products, titleText) {
+            const container = document.getElementById('categorySections');
+            container.innerHTML = '';
+
+            const sec = document.createElement('div');
+            sec.className = 'category-section';
+
+            const secHeader = document.createElement('div');
+            secHeader.className = 'section-header';
+            secHeader.innerHTML = `<div class="section-title">${titleText} (${products.length} items)</div>`;
+
+            const grid = document.createElement('div');
+            grid.className = 'product-grid';
+
+            products.forEach(p => {
+                grid.appendChild(createProductCard(p));
+            });
+
+            sec.appendChild(secHeader);
+            sec.appendChild(grid);
+            container.appendChild(sec);
+        }
+
+        function createProductCard(p) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            // CLICKABLE CARD OPENS FULL PAGE DETAIL VIEW
+            card.onclick = () => openFullProductPage(p.Product_ID);
+
+            const priceFormatted = new Intl.NumberFormat('en-IN').format(p.Price);
+            const origPriceFormatted = p.Original_Price ? new Intl.NumberFormat('en-IN').format(p.Original_Price) : '';
+
+            card.innerHTML = `
+                <div class="card-img-box">
+                    <img src="${p.Image_URL}" alt="${p.Product_Title}" loading="lazy">
+                    <span class="brand-badge">${p.Brand}</span>
+                    ${p.Discount ? `<span class="discount-badge">${p.Discount}</span>` : ''}
+                </div>
+                <div class="card-body">
+                    <div class="card-title">${p.Product_Title}</div>
+                    <div class="rating-row">
+                        <span class="star-box">★ ${floatVal(p.Rating).toFixed(1)}</span>
+                        <span class="review-count">(${p.Rating_Count || 450} ratings)</span>
+                    </div>
+                    <div class="spec-tags">
+                        ${p.Ram_Storage ? `<span class="spec-tag">${p.Ram_Storage}</span>` : ''}
+                        ${p.Processor ? `<span class="spec-tag">${p.Processor}</span>` : ''}
+                    </div>
+                    <div class="card-price-row">
+                        <span class="price-curr">₹${priceFormatted}</span>
+                        ${origPriceFormatted ? `<span class="price-orig">₹${origPriceFormatted}</span>` : ''}
+                    </div>
+                    <button class="btn-card-buy" onclick="event.stopPropagation(); addToCart(${p.Product_ID});">Add to Cart</button>
+                </div>
+            `;
+            return card;
+        }
+
+        function floatVal(val) {
+            const num = parseFloat(val);
+            return isNaN(num) ? 4.5 : num;
+        }
+
+        function filterCategoryTab(catName, el) {
+            if (el) {
+                document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+                el.classList.add('active');
+            }
+            showHomePage();
+            if (catName === 'all') {
+                renderCategorySections(allProducts);
+            } else {
+                const filtered = allProducts.filter(p => p.Category && p.Category.toLowerCase().includes(catName.toLowerCase()));
+                renderCategorySections(filtered, catName);
+            }
+        }
+
+        async function handleSearch(e) {
+            const query = e.target.value.trim();
+            if (!query) {
+                renderCategorySections(allProducts);
+                return;
+            }
+            showHomePage();
+            try {
+                const res = await fetch(`${apiBase}/products/search?query=${encodeURIComponent(query)}`);
+                const results = await res.json();
+                renderSingleGrid(results, `Search Results for "${query}"`);
+            } catch (err) { console.error(err); }
+        }
+
+        /* FULL PAGE PRODUCT VIEW */
+        async function openFullProductPage(productId) {
+            try {
+                const res = await fetch(`${apiBase}/products/detail/${productId}`);
+                const p = await res.json();
+
+                currentProductTitle = p.Product_Title;
+                const priceFormatted = new Intl.NumberFormat('en-IN').format(p.Price);
+                const origPriceFormatted = p.Original_Price ? new Intl.NumberFormat('en-IN').format(p.Original_Price) : '';
+
+                document.getElementById('detailImg').src = p.Image_URL;
+                document.getElementById('detailTitle').innerText = p.Product_Title;
+                document.getElementById('detailRating').innerText = `★ ${floatVal(p.Rating).toFixed(1)}`;
+                document.getElementById('detailReviewsCount').innerText = `(${p.Rating_Count || 450} verified ratings)`;
+                document.getElementById('detailPrice').innerText = `₹${priceFormatted}`;
+                document.getElementById('detailOrigPrice').innerText = origPriceFormatted ? `₹${origPriceFormatted}` : '';
+                document.getElementById('detailDiscount').innerText = p.Discount || '';
+                document.getElementById('detailDescription').innerText = p.Description;
+                document.getElementById('detailBuyBtn').onclick = () => addToCart(p.Product_ID);
+
+                // Build Technical Specification Table
+                const specTable = document.getElementById('specTable');
+                specTable.innerHTML = `
+                    <tr><td class="spec-key">Brand</td><td class="spec-val">${p.Brand}</td></tr>
+                    <tr><td class="spec-key">Category</td><td class="spec-val">${p.Category}</td></tr>
+                    ${p.Ram_Storage ? `<tr><td class="spec-key">RAM & Storage</td><td class="spec-val">${p.Ram_Storage}</td></tr>` : ''}
+                    ${p.Processor ? `<tr><td class="spec-key">Processor / Chipset</td><td class="spec-val">${p.Processor}</td></tr>` : ''}
+                    ${p.Camera_Specs && p.Camera_Specs !== 'N/A' ? `<tr><td class="spec-key">Camera Specs</td><td class="spec-val">${p.Camera_Specs}</td></tr>` : ''}
+                    ${p.Battery && p.Battery !== 'N/A' ? `<tr><td class="spec-key">Battery / Power Output</td><td class="spec-val">${p.Battery}</td></tr>` : ''}
+                    <tr><td class="spec-key">Seller Store</td><td class="spec-val">${p.Store || 'E-Cart Official Retail'}</td></tr>
+                    <tr><td class="spec-key">Warranty</td><td class="spec-val">1 Year Brand Warranty</td></tr>
+                `;
+
+                // Build Customer Reviews Section
+                const reviewsContainer = document.getElementById('reviewsContainer');
+                reviewsContainer.innerHTML = '';
+
+                let reviews = [];
+                if (p.reviews) {
+                    try {
+                        reviews = typeof p.reviews === 'string' ? JSON.parse(p.reviews) : p.reviews;
+                    } catch(e) {}
+                }
+
+                if (reviews.length === 0) {
+                    reviews = [
+                        { user: "Rohan Verma", rating: 5, comment: "Top tier performance and build quality. Highly satisfied with the purchase!", date: "2026-07-10" },
+                        { user: "Sneha Kapur", rating: 5, comment: "Delivered in 2 days. Original product with warranty card.", date: "2026-07-20" }
+                    ];
+                }
+
+                reviews.forEach(r => {
+                    const rev = document.createElement('div');
+                    rev.className = 'review-card';
+                    rev.innerHTML = `
+                        <div class="review-user-row">
+                            <span class="review-user">👤 ${r.user} <span style="font-size:0.72rem; color:var(--emerald-buy); margin-left:0.4rem;">✓ Verified Buyer</span></span>
+                            <span class="review-stars">★ ${r.rating}.0</span>
+                        </div>
+                        <div class="review-text">"${r.comment}"</div>
+                        <div style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;">Reviewed on ${r.date || '2026-07-15'}</div>
+                    `;
+                    reviewsContainer.appendChild(rev);
+                });
+
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('fullProductPage').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (err) { console.error("Error loading product detail:", err); }
+        }
+
+        function showHomePage() {
+            document.getElementById('fullProductPage').classList.remove('active');
+            document.getElementById('homePage').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Cart Functions */
+        function addToCart(productId) {
+            const prod = allProducts.find(p => p.Product_ID === productId);
+            if (!prod) return;
+
+            const existing = cart.find(item => item.Product_ID === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...prod, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateCartQty(productId, delta) {
+            const idx = cart.findIndex(item => item.Product_ID === productId);
+            if (idx > -1) {
+                cart[idx].quantity += delta;
+                if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.Price * item.quantity), 0);
+
+            document.getElementById('cartCount').innerText = totalCount;
+            document.getElementById('cartDrawerCount').innerText = totalCount;
+            document.getElementById('cartTotal').innerText = `₹${new Intl.NumberFormat('en-IN').format(totalPrice)}`;
+
+            const drawerItems = document.getElementById('drawerItems');
+            drawerItems.innerHTML = '';
+
+            if (cart.length === 0) {
+                drawerItems.innerHTML = `<div style="text-align:center; padding: 2rem; color: var(--text-secondary);">Your shopping cart is empty.</div>`;
+                return;
+            }
+
+            cart.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'cart-item';
+                el.innerHTML = `
+                    <img src="${item.Image_URL}" alt="${item.Product_Title}">
+                    <div style="flex:1;">
+                        <div class="cart-item-title">${item.Product_Title}</div>
+                        <div class="cart-item-price">₹${new Intl.NumberFormat('en-IN').format(item.Price * item.quantity)}</div>
+                        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.4rem;">
+                            <button style="width:24px; height:24px; border-radius:6px; background:rgba(255,255,255,0.1); border:none; color:#fff; cursor:pointer;" onclick="updateCartQty(${item.Product_ID}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button style="width:24px; height:24px; border-radius:6px; background:rgba(255,255,255,0.1); border:none; color:#fff; cursor:pointer;" onclick="updateCartQty(${item.Product_ID}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+                drawerItems.appendChild(el);
+            });
+        }
+
+        function toggleCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('active');
+            document.getElementById('cartOverlay').classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) { alert("Your cart is empty!"); return; }
+            const totalPrice = cart.reduce((sum, item) => sum + (item.Price * item.quantity), 0);
+            alert(`🎉 Order Placed Successfully!\n\nTotal Amount: ₹${new Intl.NumberFormat('en-IN').format(totalPrice)}\nPayment Mode: UPI / Cash on Delivery\n\nThank you for shopping on E-Cart Tech Hub!`);
+            cart = [];
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        /* Floating RAG Chatbot Functions */
+        function toggleChatWidget() {
+            document.getElementById('chatWidget').classList.toggle('active');
+        }
+
+        function appendWidgetMsg(sender, text, products = []) {
+            const body = document.getElementById('widgetBody');
+            const msg = document.createElement('div');
+            msg.className = `chat-msg ${sender}`;
+
+            const bubble = document.createElement('div');
+            bubble.className = 'msg-bubble';
+            bubble.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+
+            msg.appendChild(bubble);
+            body.appendChild(msg);
+
+            // Render 1 or 2 Clickable Mini Cards inside chat
+            if (products && products.length > 0) {
+                const container = document.createElement('div');
+                container.className = 'chat-products-container';
+                products.forEach(p => {
+                    const priceFormatted = new Intl.NumberFormat('en-IN').format(p.Price);
+                    const card = document.createElement('div');
+                    card.className = 'chat-mini-card';
+                    // CLICKING MINI CARD OPENS FULL PAGE PRODUCT VIEW
+                    card.onclick = () => openFullProductPage(p.Product_ID);
+                    card.innerHTML = `
+                        <img src="${p.Image_URL}" alt="${p.Product_Title}">
+                        <div class="chat-mini-details">
+                            <div class="chat-mini-title">${p.Product_Title}</div>
+                            <div class="chat-mini-price">₹${priceFormatted}</div>
+                        </div>
+                        <button class="chat-mini-add-btn" onclick="event.stopPropagation(); addToCart(${p.Product_ID})">Add to Cart</button>
+                    `;
+                    container.appendChild(card);
+                });
+                body.appendChild(container);
+            }
+
+            body.scrollTop = body.scrollHeight;
+        }
+
+        async function sendWidgetMessage() {
+            const input = document.getElementById('widgetInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            appendWidgetMsg('user', text);
+            input.value = '';
+
+            const custId = parseInt(document.getElementById('custIdSelect').value);
+
+            try {
+                const res = await fetch(`${apiBase}/chat/query`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: text, customer_id: custId })
+                });
 
                 if (!res.ok) {
-                    const err = await res.json();
-                    appendMessage('bot', `Sorry, an error occurred: ${err.detail || 'Failed to fetch response.'}`);
+                    appendWidgetMsg('bot', "Sorry, an error occurred while connecting to the RAG system.");
                     return;
                 }
 
                 const data = await res.json();
-                appendMessage('bot', data.response);
-
+                appendWidgetMsg('bot', data.response, data.products);
             } catch (err) {
-                removeTyping();
-                appendMessage('bot', `Error connecting to server: ${err.message}`);
+                appendWidgetMsg('bot', `Error: ${err.message}`);
             }
         }
 
         function sendQuickQuery(query) {
-            userInput.value = query;
-            sendMessage();
+            document.getElementById('widgetInput').value = query;
+            sendWidgetMessage();
         }
 
-        function handleKeyDown(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        }
+        window.onload = () => {
+            fetchProducts();
+        };
     </script>
 </body>
 </html>

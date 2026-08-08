@@ -85,10 +85,14 @@ def preprocess_product_data(df: pd.DataFrame) -> pd.DataFrame:
     
     # Select and reorder columns
     columns_to_keep = [
-        'Product_ID', 'Product_Title', 'Description', 'Category',
-        'Price', 'Rating', 'Rating_Count', 'Store', 'feature_list',
-        'combined_text'
+        'Product_ID', 'Product_Title', 'Brand', 'Description', 'Category',
+        'Price', 'Original_Price', 'Discount', 'Rating', 'Rating_Count',
+        'Image_URL', 'Ram_Storage', 'Processor', 'Camera_Specs', 'Battery',
+        'Store', 'feature_list', 'combined_text', 'reviews'
     ]
+    
+    # Only keep columns that exist in df
+    columns_to_keep = [col for col in columns_to_keep if col in df.columns]
     
     df = df[columns_to_keep]
     

@@ -764,6 +764,161 @@
             transition: all 0.2s ease;
         }
 
+        /* GPay Payment Modal Styles */
+        .gpay-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .gpay-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .gpay-modal-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            width: 420px;
+            max-width: 92vw;
+            padding: 1.8rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            transform: scale(0.92);
+            transition: transform 0.3s ease;
+        }
+
+        .gpay-modal-overlay.active .gpay-modal-card {
+            transform: scale(1);
+        }
+
+        .gpay-close-btn {
+            position: absolute;
+            top: 1rem; right: 1.2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .gpay-header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .gpay-logo {
+            background: linear-gradient(135deg, #ea4335 0%, #fbbc05 33%, #34a853 66%, #4285f4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+
+        .gpay-sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        .gpay-amount-box {
+            margin-top: 0.8rem;
+            background: rgba(31, 41, 61, 0.6);
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pay-label { font-size: 0.85rem; color: var(--text-secondary); }
+        .pay-amount { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--amber-gold); }
+
+        .qr-container {
+            background: #fff;
+            padding: 1.2rem;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .qr-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .qr-scan-text {
+            font-size: 0.78rem;
+            color: #1e293b;
+            font-weight: 700;
+            margin-top: 0.6rem;
+        }
+
+        .upi-id-box {
+            background: rgba(31, 41, 61, 0.6);
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
+            padding: 0.5rem 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .upi-val { font-weight: 700; color: var(--flipkart-blue); }
+
+        .btn-copy-upi {
+            background: rgba(40, 116, 240, 0.2);
+            border: 1px solid var(--flipkart-blue);
+            color: #fff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .payment-steps {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .btn-gpay-confirm {
+            width: 100%;
+            background: var(--emerald-buy);
+            color: #fff;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--emerald-glow);
+            transition: all 0.2s ease;
+        }
+
+        .btn-gpay-confirm:hover {
+            background: var(--emerald-hover);
+        }
+
         /* Floating RAG Chat Widget */
         .chat-fab {
             position: fixed;
@@ -1068,7 +1223,45 @@
                 <span>Total Amount:</span>
                 <span id="cartTotal" style="color:var(--amber-gold);">₹0</span>
             </div>
-            <button class="btn-checkout" onclick="checkout()">Proceed to Checkout (₹)</button>
+            <button class="btn-checkout" onclick="checkout()">Proceed to Pay via GPay (₹)</button>
+        </div>
+    </div>
+
+    <!-- GPay / UPI Payment Modal -->
+    <div class="gpay-modal-overlay" id="gpayModalOverlay">
+        <div class="gpay-modal-card">
+            <button class="gpay-close-btn" onclick="closeGPayModal()">&times;</button>
+
+            <div class="gpay-header">
+                <div class="gpay-brand">
+                    <span class="gpay-logo">Google Pay</span>
+                    <span class="gpay-sub">Pay to <b>Manoj Kumar</b></span>
+                </div>
+                <div class="gpay-amount-box">
+                    <span class="pay-label">Total Amount:</span>
+                    <span class="pay-amount" id="gpayPayableAmount">₹0</span>
+                </div>
+            </div>
+
+            <div class="gpay-body">
+                <div class="qr-container" style="background:#fff; border-radius:18px; padding:1rem; text-align:center;">
+                    <img id="gpayQrImage" src="/static/gpay_qr.png" alt="Manoj Kumar GPay QR Code" style="width:100%; max-width:240px; height:auto; border-radius:12px; display:block; margin:0 auto;">
+                    <div class="qr-scan-text" style="font-size:0.8rem; color:#1e293b; font-weight:700; margin-top:0.6rem;">📷 Scan to pay with any UPI App</div>
+                </div>
+
+                <div class="upi-id-box">
+                    <span>UPI ID: <span class="upi-val" id="gpayUpiId">manoj24kumar1011@okicici</span></span>
+                    <button class="btn-copy-upi" onclick="copyUpiId()">Copy</button>
+                </div>
+
+                <div class="payment-steps">
+                    Pay <b id="gpayPayableText">₹0</b> to <b>Manoj Kumar</b> to complete your order.<br>Once payment is done, click confirm below.
+                </div>
+
+                <button class="btn-gpay-confirm" onclick="confirmGPayPayment()">
+                    ✓ I Have Paid (Confirm Order)
+                </button>
+            </div>
         </div>
     </div>
 
@@ -1430,10 +1623,34 @@ Try asking:
         function checkout() {
             if (cart.length === 0) { alert("Your cart is empty!"); return; }
             const totalPrice = cart.reduce((sum, item) => sum + (item.Price * item.quantity), 0);
-            alert(`🎉 Order Placed Successfully!\n\nTotal Amount: ₹${new Intl.NumberFormat('en-IN').format(totalPrice)}\nPayment Mode: UPI / Cash on Delivery\n\nThank you for shopping on E-Cart Tech Hub!`);
+            openGPayModal(totalPrice);
+        }
+
+        function openGPayModal(amount) {
+            const formatted = new Intl.NumberFormat('en-IN').format(amount);
+            document.getElementById('gpayPayableAmount').innerText = `₹${formatted}`;
+            document.getElementById('gpayPayableText').innerText = `₹${formatted}`;
+            document.getElementById('gpayQrImage').src = `/static/gpay_qr.png`;
+            document.getElementById('gpayModalOverlay').classList.add('active');
+        }
+
+        function closeGPayModal() {
+            document.getElementById('gpayModalOverlay').classList.remove('active');
+        }
+
+        function copyUpiId() {
+            navigator.clipboard.writeText("manoj24kumar1011@okicici");
+            alert("UPI ID (manoj24kumar1011@okicici) copied to clipboard!");
+        }
+
+        function confirmGPayPayment() {
+            alert("🎉 Payment Received & Verified!\n\nYour order has been confirmed successfully.\nEstimated Delivery: 2-3 Days.\n\nThank you for shopping on E-Cart Tech Hub!");
             cart = [];
             updateCartUI();
-            toggleCartDrawer();
+            closeGPayModal();
+            if (document.getElementById('cartDrawer').classList.contains('active')) {
+                toggleCartDrawer();
+            }
         }
 
         /* Floating RAG Chatbot Functions */

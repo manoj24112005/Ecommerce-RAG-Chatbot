@@ -1,35 +1,35 @@
 Order_ID,Order_Date,Time,Customer_Id,Gender,Device_Type,Customer_Login_type,Product_Category,Product,Quantity,Sales,Discount,Profit,Shipping_Cost,Order_Priority,Payment_method
-4001,2026-06-11,06:12:43,45120,Female,Mobile Web,Verified Member,Audio,"Sony WH-1000XM5 Wireless Premium Noise Canceling Headphones (Silver, 30 Hr Battery, Auto NC Optimizer)",1,29990,1699,3598,299,Medium,UPI / GPay
-4002,2026-06-12,19:12:43,12044,Female,iOS App,Verified Member,Smartphones,"Nothing Phone (2a) 5G (Black, 8GB RAM, 128GB Storage)",1,23999,1397,2879,299,Low,NetBanking
-4003,2026-06-14,04:12:43,89102,Male,Android App,Verified Member,Smartphones,"OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",1,69999,687,8399,299,Medium,EMI
-4004,2026-06-15,14:12:43,89102,Female,Desktop Web,Verified Member,Chargers & Cables,Anker Prime 67W GaN Fast Wall Charger (3-Port USB-C & USB-A Power Adapter),1,3999,2355,479,0,Medium,Debit Card
-4005,2026-06-16,22:12:43,37077,Male,iOS App,Verified Member,Smartphones,"Google Pixel 8 Pro (Obsidian, 12GB RAM, 128GB Storage)",1,99999,1396,11999,299,High,Credit Card
-4006,2026-06-18,15:12:43,12044,Female,Mobile Web,Verified Member,Cameras,"Sony ZV-E10 Mirrorless Vlog Camera (24.2MP, 4K Video, Vari-Angle Touchscreen, Directional 3-Capsule Mic)",1,47990,2564,5758,0,High,UPI / PhonePe
-4007,2026-06-19,23:12:43,89102,Male,Android App,Verified Member,Smartphones,"Nothing Phone (2a) 5G (Black, 8GB RAM, 128GB Storage)",1,23999,745,2879,499,High,UPI / GPay
-4008,2026-06-21,12:12:43,89102,Female,Desktop Web,Verified Member,Chargers & Cables,Anker 100W USB-C to USB-C Heavy-Duty Nylon Braided Cable (6ft / 1.8m),1,1299,2224,155,199,High,COD
-4009,2026-06-23,05:12:43,45120,Male,iOS App,Verified Member,Cameras,"Sony Alpha 7 IV Full-Frame Mirrorless Camera Body (33MP, 4K 60p, Real-Time Eye AF, 5-Axis OIS)",1,214990,1824,25798,199,High,COD
-4010,2026-06-24,19:12:43,12044,Male,iOS App,Verified Member,Cameras,"Sony Alpha 7 IV Full-Frame Mirrorless Camera Body (33MP, 4K 60p, Real-Time Eye AF, 5-Axis OIS)",1,214990,2872,25798,299,Low,Credit Card
-4011,2026-06-26,07:12:43,37077,Male,iOS App,Verified Member,Cameras,"Sony Alpha 7 IV Full-Frame Mirrorless Camera Body (33MP, 4K 60p, Real-Time Eye AF, 5-Axis OIS)",1,214990,909,25798,299,High,EMI
-4012,2026-06-27,19:12:43,98201,Female,Desktop Web,Verified Member,Cameras,"GoPro HERO12 Black Waterproof Action Camera (5.3K60 Video, 27MP Photos, HDR, HyperSmooth 6.0)",1,37990,2507,4558,0,Medium,UPI / PhonePe
-4013,2026-06-28,23:12:43,98201,Male,Desktop Web,Verified Member,Laptops & PCs,"Apple MacBook Air 15-inch M3 Chip (16GB RAM, 512GB SSD) - Starlight",1,154900,2466,18588,499,High,EMI
-4014,2026-06-30,18:12:43,37077,Male,iOS App,Verified Member,Gaming & Peripherals,"Sony PlayStation 5 Console (Slim Disc Edition, 1TB SSD, DualSense Wireless Controller)",1,54990,2694,6598,499,High,COD
-4015,2026-07-01,23:12:43,98201,Female,Desktop Web,Verified Member,Smartwatches,"Samsung Galaxy Watch 6 Classic LTE 47mm (Black, Rotating Bezel, Sapphire Crystal Glass)",1,36999,1434,4439,499,High,UPI / GPay
-4016,2026-07-03,15:12:43,45120,Female,Mobile Web,Verified Member,Gaming & Peripherals,"HyperX Cloud III Wireless Gaming Headset (53mm Angled Drivers, 120 Hour Battery, DTS Spatial Audio, 10mm Mic)",1,12990,2308,1558,499,High,Debit Card
-4017,2026-07-05,05:12:43,37077,Female,Android App,Verified Member,Smartphones,"Nothing Phone (2a) 5G (Black, 8GB RAM, 128GB Storage)",1,23999,1861,2879,0,Medium,UPI / GPay
-4018,2026-07-06,11:12:43,37077,Male,iOS App,Verified Member,Smartphones,"OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",1,69999,1132,8399,0,Medium,Debit Card
-4019,2026-07-07,22:12:43,37077,Female,Android App,Verified Member,Chargers & Cables,Anker Prime 67W GaN Fast Wall Charger (3-Port USB-C & USB-A Power Adapter),1,3999,1659,479,0,High,NetBanking
-4020,2026-07-09,16:12:43,37077,Male,iOS App,Verified Member,Audio,"Sony WH-1000XM5 Wireless Premium Noise Canceling Headphones (Silver, 30 Hr Battery, Auto NC Optimizer)",1,29990,531,3598,199,Medium,Debit Card
-4021,2026-07-11,01:12:43,89102,Male,Android App,Verified Member,Smartphones,Apple iPhone 15 Pro Max (256 GB) - Natural Titanium,1,149900,2385,17988,499,High,NetBanking
-4022,2026-07-12,18:12:43,98201,Male,Android App,Verified Member,Smartphones,Apple iPhone 15 Pro Max (256 GB) - Natural Titanium,1,149900,864,17988,0,High,EMI
-4023,2026-07-14,01:12:43,37077,Female,iOS App,Verified Member,Laptops & PCs,"Dell XPS 13 Laptop (Intel Core Ultra 7 155H, 13.4-inch 3K+ Touch OLED, 16GB RAM, 512GB SSD)",1,144990,2426,17398,299,High,Credit Card
-4024,2026-07-15,13:12:43,12044,Male,iOS App,Verified Member,Cameras,"Sony ZV-E10 Mirrorless Vlog Camera (24.2MP, 4K Video, Vari-Angle Touchscreen, Directional 3-Capsule Mic)",1,47990,1513,5758,0,High,EMI
-4025,2026-07-16,23:12:43,12044,Female,Android App,Verified Member,Audio,Apple AirPods Pro (2nd Generation) with MagSafe Case (USB-C) - Active Noise Cancellation & Adaptive Audio,1,23900,1196,2868,0,Medium,Debit Card
-4026,2026-07-18,10:12:43,37077,Male,Desktop Web,Verified Member,Smartphones,"Nothing Phone (2a) 5G (Black, 8GB RAM, 128GB Storage)",1,23999,2777,2879,199,Medium,UPI / GPay
-4027,2026-07-20,05:12:43,12044,Male,Mobile Web,Verified Member,Cameras,"Sony Alpha 7 IV Full-Frame Mirrorless Camera Body (33MP, 4K 60p, Real-Time Eye AF, 5-Axis OIS)",1,214990,2834,25798,499,High,Credit Card
-4028,2026-07-21,10:12:43,45120,Male,Desktop Web,Verified Member,Cameras,"Fujifilm X-T5 Mirrorless Camera Body (40.2MP APS-C X-Trans CMOS 5 HR Sensor, 6.2K Video, Silver)",1,169990,2033,20398,499,High,UPI / GPay
-4029,2026-07-23,04:12:43,45120,Female,Mobile Web,Verified Member,Audio,Apple AirPods Pro (2nd Generation) with MagSafe Case (USB-C) - Active Noise Cancellation & Adaptive Audio,1,23900,1738,2868,199,High,EMI
-4030,2026-07-24,17:12:43,89102,Male,iOS App,Verified Member,Cameras,"Sony Alpha 7 IV Full-Frame Mirrorless Camera Body (33MP, 4K 60p, Real-Time Eye AF, 5-Axis OIS)",1,214990,2562,25798,499,High,UPI / GPay
-4031,2026-07-26,05:12:43,37077,Male,Android App,Verified Member,Cameras,"Sony ZV-E10 Mirrorless Vlog Camera (24.2MP, 4K Video, Vari-Angle Touchscreen, Directional 3-Capsule Mic)",1,47990,1871,5758,499,Low,NetBanking
-4032,2026-07-27,14:12:43,45120,Male,iOS App,Verified Member,Gaming & Peripherals,"Sony PlayStation 5 Console (Slim Disc Edition, 1TB SSD, DualSense Wireless Controller)",1,54990,2073,6598,299,High,Debit Card
-4033,2026-07-29,06:12:43,98201,Female,Android App,Verified Member,Smartphones,"Xiaomi Redmi Note 13 Pro+ 5G (Fusion Purple, 12GB RAM, 256GB Storage)",1,31999,726,3839,199,High,UPI / PhonePe
-4034,2026-07-30,17:12:43,37077,Female,Desktop Web,Verified Member,Smartphones,"OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",1,69999,1415,8399,299,High,UPI / PhonePe
+4001,2026-06-11,05:07:32,37077,Male,iOS App,Verified Member,Smartphones,Apple iPhone 15 Pro Max (256 GB) - Natural Titanium,1,149900,2296,17988,199,High,UPI / GPay
+4002,2026-06-12,18:07:32,45120,Male,Desktop Web,Verified Member,Smartwatches,"Samsung Galaxy Watch 6 Classic LTE 47mm (Black, Rotating Bezel, Sapphire Crystal Glass)",1,36999,2550,4439,0,High,COD
+4003,2026-06-14,08:07:32,37077,Female,Desktop Web,Verified Member,Laptops & PCs,"ASUS ROG Zephyrus G16 Gaming Laptop (16-inch 240Hz OLED, Intel Core Ultra 9, RTX 4070 8GB, 32GB RAM, 1TB SSD)",1,219990,2501,26398,199,High,NetBanking
+4004,2026-06-15,13:07:32,45120,Male,Desktop Web,Verified Member,Chargers & Cables,Anker 100W USB-C to USB-C Heavy-Duty Nylon Braided Cable (6ft / 1.8m),1,1299,1294,155,499,Medium,UPI / GPay
+4005,2026-06-17,07:07:32,37077,Male,Mobile Web,Verified Member,Laptops & PCs,"Apple MacBook Air 15-inch M3 Chip (16GB RAM, 512GB SSD) - Starlight",1,154900,2566,18588,0,High,UPI / GPay
+4006,2026-06-18,17:07:32,89102,Male,Android App,Verified Member,Laptops & PCs,"ASUS ROG Strix G16 Gaming Desktop PC (Intel Core i9-14900KF, RTX 4080 Super 16GB, 32GB DDR5, 2TB SSD, Liquid Cooled)",1,289990,2476,34798,499,Medium,NetBanking
+4007,2026-06-20,02:07:32,37077,Female,Desktop Web,Verified Member,Smartphones,"Xiaomi Redmi Note 13 Pro+ 5G (Fusion Purple, 12GB RAM, 256GB Storage)",1,31999,2941,3839,199,Medium,COD
+4008,2026-06-21,21:07:32,45120,Female,Desktop Web,Verified Member,Laptops & PCs,"HP Victus 15 Gaming Laptop (AMD Ryzen 5 5600H, RTX 3050 4GB, 16GB RAM, 512GB SSD, 144Hz FHD)",1,49990,1883,5998,299,High,UPI / GPay
+4009,2026-06-23,01:07:32,45120,Male,Mobile Web,Verified Member,Cameras,"Fujifilm X-T5 Mirrorless Camera Body (40.2MP APS-C X-Trans CMOS 5 HR Sensor, 6.2K Video, Silver)",1,169990,1342,20398,0,High,EMI
+4010,2026-06-24,15:07:32,12044,Male,Desktop Web,Verified Member,Smartwatches,Apple Watch Series 9 GPS 45mm (Midnight Aluminum Case with Midnight Sport Band),1,44900,827,5388,199,Medium,COD
+4011,2026-06-26,05:07:32,37077,Male,Mobile Web,Verified Member,Laptops & PCs,"Apple MacBook Air 15-inch M3 Chip (16GB RAM, 512GB SSD) - Starlight",1,154900,1182,18588,0,High,Credit Card
+4012,2026-06-27,19:07:32,37077,Female,Android App,Verified Member,Gaming & Peripherals,"Sony PlayStation 5 Console (Slim Disc Edition, 1TB SSD, DualSense Wireless Controller)",1,54990,1395,6598,0,High,COD
+4013,2026-06-29,06:07:32,45120,Female,Mobile Web,Verified Member,Smartphones,"OnePlus 12 5G (Silky Black, 16GB RAM, 512GB Storage)",1,69999,1640,8399,499,High,Credit Card
+4014,2026-06-30,19:07:32,37077,Male,Android App,Verified Member,Gaming & Peripherals,"LG UltraGear 27-inch 240Hz QHD Gaming Monitor (Nano IPS 1ms, HDR10, G-SYNC Compatible, HDMI 2.1)",1,38990,2948,4678,299,High,UPI / PhonePe
+4015,2026-07-02,01:07:32,89102,Male,Desktop Web,Verified Member,Audio,Apple AirPods Pro (2nd Generation) with MagSafe Case (USB-C) - Active Noise Cancellation & Adaptive Audio,1,23900,1106,2868,499,Low,UPI / GPay
+4016,2026-07-03,19:07:32,98201,Male,Desktop Web,Verified Member,Gaming & Peripherals,"Samsung Odyssey OLED G8 34-inch UWQHD Curved Gaming Monitor (175Hz, 0.03ms, Neo Quantum Processor, Smart TV)",1,99990,1630,11998,0,Low,Debit Card
+4017,2026-07-05,02:07:32,37077,Female,Android App,Verified Member,Smartphones,"Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 512GB Storage)",1,129999,2195,15599,299,Low,Credit Card
+4018,2026-07-06,21:07:32,37077,Female,Mobile Web,Verified Member,Smartphones,"Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 512GB Storage)",1,129999,2653,15599,0,High,UPI / GPay
+4019,2026-07-08,07:07:32,98201,Female,Desktop Web,Verified Member,Laptops & PCs,"HP OMEN 45L Gaming Desktop PC (AMD Ryzen 9 7900X, RTX 4070 Ti Super 16GB, 32GB DDR5 RAM, 1TB NVMe SSD)",1,234990,2719,28198,499,High,Credit Card
+4020,2026-07-09,13:07:32,12044,Female,iOS App,Verified Member,Laptops & PCs,"Dell XPS 13 Laptop (Intel Core Ultra 7 155H, 13.4-inch 3K+ Touch OLED, 16GB RAM, 512GB SSD)",1,144990,1658,17398,199,Medium,COD
+4021,2026-07-11,04:07:32,12044,Male,Android App,Verified Member,Laptops & PCs,"Apple MacBook Pro 14-inch M3 Pro (18GB Unified Memory, 512GB SSD, Space Black)",1,199900,895,23988,199,Medium,EMI
+4022,2026-07-12,14:07:32,89102,Female,Mobile Web,Verified Member,Smartwatches,"Samsung Galaxy Watch 6 Classic LTE 47mm (Black, Rotating Bezel, Sapphire Crystal Glass)",1,36999,1177,4439,199,High,UPI / PhonePe
+4023,2026-07-14,00:07:32,98201,Female,Desktop Web,Verified Member,Chargers & Cables,Anker Prime 67W GaN Fast Wall Charger (3-Port USB-C & USB-A Power Adapter),1,3999,607,479,299,Medium,NetBanking
+4024,2026-07-15,18:07:32,37077,Female,Desktop Web,Verified Member,Laptops & PCs,"HP OMEN 45L Gaming Desktop PC (AMD Ryzen 9 7900X, RTX 4070 Ti Super 16GB, 32GB DDR5 RAM, 1TB NVMe SSD)",1,234990,2213,28198,499,Medium,COD
+4025,2026-07-17,03:07:32,37077,Male,Desktop Web,Verified Member,Cameras,"Canon EOS R50 Mirrorless Camera Body (24.2MP, 4K 30p Uncropped, Dual Pixel CMOS AF II, OLED EVF)",1,49990,2108,5998,299,Low,UPI / GPay
+4026,2026-07-18,18:07:32,37077,Male,Mobile Web,Verified Member,Laptops & PCs,"ASUS ROG Zephyrus G16 Gaming Laptop (16-inch 240Hz OLED, Intel Core Ultra 9, RTX 4070 8GB, 32GB RAM, 1TB SSD)",1,219990,545,26398,199,High,Credit Card
+4027,2026-07-20,06:07:32,37077,Female,Mobile Web,Verified Member,Gaming & Peripherals,"Sony PlayStation 5 Console (Slim Disc Edition, 1TB SSD, DualSense Wireless Controller)",1,54990,1893,6598,0,High,UPI / PhonePe
+4028,2026-07-21,12:07:32,37077,Female,iOS App,Verified Member,Laptops & PCs,"Dell XPS 13 Laptop (Intel Core Ultra 7 155H, 13.4-inch 3K+ Touch OLED, 16GB RAM, 512GB SSD)",1,144990,1704,17398,299,High,NetBanking
+4029,2026-07-23,04:07:32,37077,Female,Desktop Web,Verified Member,Gaming & Peripherals,"HyperX Cloud III Wireless Gaming Headset (53mm Angled Drivers, 120 Hour Battery, DTS Spatial Audio, 10mm Mic)",1,12990,875,1558,0,High,UPI / GPay
+4030,2026-07-24,17:07:32,45120,Male,Mobile Web,Verified Member,Gaming & Peripherals,"Sony PlayStation 5 Console (Slim Disc Edition, 1TB SSD, DualSense Wireless Controller)",1,54990,757,6598,199,Medium,Debit Card
+4031,2026-07-26,09:07:32,37077,Female,Mobile Web,Verified Member,Smartphones,"Xiaomi Redmi Note 13 Pro+ 5G (Fusion Purple, 12GB RAM, 256GB Storage)",1,31999,2897,3839,499,High,UPI / GPay
+4032,2026-07-27,13:07:32,37077,Male,Mobile Web,Verified Member,Smartwatches,Apple Watch Series 9 GPS 45mm (Midnight Aluminum Case with Midnight Sport Band),1,44900,907,5388,499,High,UPI / PhonePe
+4033,2026-07-29,05:07:32,98201,Male,Desktop Web,Verified Member,Smartphones,"Google Pixel 8 Pro (Obsidian, 12GB RAM, 128GB Storage)",1,99999,990,11999,0,High,UPI / PhonePe
+4034,2026-07-30,20:07:32,37077,Male,iOS App,Verified Member,Smartphones,"Nothing Phone (2a) 5G (Black, 8GB RAM, 128GB Storage)",1,23999,2618,2879,199,High,UPI / GPay

@@ -1,6 +1,6 @@
-timestamp: 2026-08-08T09:13:02.194762
-product_count: 28
+timestamp: 2026-08-08T11:07:48.116175
+product_count: 34
 order_count: 34
-embedding_shape: (28, 384)
+embedding_shape: (34, 384)
 product_columns: ['Product_ID', 'Product_ID', 'Product_Title', 'Brand', 'Description', 'Category', 'Price', 'Price', 'Original_Price', 'Discount', 'Rating', 'Rating', 'Rating_Count', 'Rating_Count', 'Image_URL', 'Ram_Storage', 'Processor', 'Camera_Specs', 'Battery', 'Store', 'feature_list', 'combined_text', 'reviews']
 order_columns: ['Order_ID', 'Order_DateTime', 'Customer_Id', 'Gender', 'Device_Type', 'Customer_Login_type', 'Product_Category', 'Product', 'Quantity', 'Sales', 'Total_Amount', 'Discount', 'Profit', 'Net_Profit', 'Shipping_Cost', 'Order_Priority', 'Payment_method']

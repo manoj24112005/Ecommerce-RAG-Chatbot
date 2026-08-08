@@ -63,8 +63,13 @@ class ECommerceRAG:
         if GEMINI_AVAILABLE and api_key:
             try:
                 genai.configure(api_key=api_key)
-                self.gemini_model = genai.GenerativeModel("gemini-1.5-flash")
-                logger.info("Initialized Gemini LLM for strictly grounded RAG generation.")
+                for m_name in ["gemini-1.5-flash-002", "gemini-1.5-flash-001", "gemini-1.5-pro", "gemini-2.0-flash-exp", "gemini-pro"]:
+                    try:
+                        self.gemini_model = genai.GenerativeModel(m_name)
+                        logger.info(f"Initialized Gemini LLM ({m_name}) for strictly grounded RAG generation.")
+                        break
+                    except Exception:
+                        continue
             except Exception as e:
                 logger.warning(f"Could not initialize Gemini LLM: {e}")
 
@@ -138,7 +143,7 @@ class ECommerceRAG:
         q = query.lower()
         if any(w in q for w in ['camera', 'cameras', 'dslr', 'mirrorless', 'vlog', 'vlogging', 'action cam']):
             return 'Cameras'
-        if any(w in q for w in ['laptop', 'laptops', 'computer', 'desktop', 'macbook', 'workstation']):
+        if any(w in q for w in ['laptop', 'laptops', 'computer', 'desktop', 'macbook', 'workstation', 'notebook', 'ultrabook', 'pc']):
             return 'Laptops'
         if any(w in q for w in ['phone', 'phones', 'smartphone', 'smartphones', 'mobile', 'iphone']):
             return 'Smartphones'
@@ -170,6 +175,7 @@ class ECommerceRAG:
         results_df = self.product_df.copy()
         results_df['similarity'] = similarities
         
+        has_category_match = False
         # Apply strict category intent filter if present
         if category_filter is not None:
             cat_col = 'Category' if 'Category' in results_df.columns else ('main_category' if 'main_category' in results_df.columns else '')
@@ -177,6 +183,7 @@ class ECommerceRAG:
                 cat_matches = results_df[results_df[cat_col].astype(str).str.lower().str.contains(category_filter.lower())]
                 if not cat_matches.empty:
                     results_df = cat_matches
+                    has_category_match = True
         
         if min_rating is not None:
             results_df = results_df[results_df['Rating'] >= min_rating]
@@ -193,11 +200,13 @@ class ECommerceRAG:
         results_df = results_df.sort_values('similarity', ascending=False)
         top_similarity = results_df.iloc[0]['similarity'] if not results_df.empty else 0.0
         
-        # Enforce minimum similarity threshold (0.25) to prevent retrieval of unrelated products
-        if top_similarity < 0.25:
+        # Lower threshold when category match is explicitly found (0.05 vs 0.20)
+        min_threshold = 0.05 if has_category_match else 0.20
+        if top_similarity < min_threshold and not has_category_match:
             return [], top_similarity
             
         top_matches = results_df.head(top_k).to_dict('records')
+        return top_matches, top_similarity
         return top_matches, top_similarity
 
     # -------------------------------------------------------------

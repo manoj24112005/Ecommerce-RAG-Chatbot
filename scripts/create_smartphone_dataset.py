@@ -266,6 +266,144 @@ def generate_verified_tech_dataset():
                 {"user": "Meera Sen", "rating": 4, "comment": "Minimalist futuristic design. Touchpad takes 1 day to get used to.", "date": "2026-06-25"}
             ])
         },
+        {
+            "parent_asin": 27,
+            "title": "Apple MacBook Pro 14-inch M3 Pro (18GB Unified Memory, 512GB SSD, Space Black)",
+            "Brand": "Apple",
+            "main_category": "Laptops & PCs",
+            "categories": "Laptops & PCs|Apple|MacBook|MacBookPro|M3Pro|Laptop",
+            "description": "Apple MacBook Pro 14-inch with M3 Pro chip (11-core CPU, 14-core GPU), 18GB unified memory, 512GB SSD, Liquid Retina XDR display, 1080p FaceTime HD camera, six-speaker sound system, and HDMI 2.1 port.",
+            "price": 199900,
+            "Original_Price": 214900,
+            "Discount": "7% OFF",
+            "average_rating": 4.9,
+            "rating_number": 1250,
+            "store": "Apple Official Store",
+            "Image_URL": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80",
+            "Ram_Storage": "18GB Unified Memory | 512GB SSD",
+            "Processor": "Apple M3 Pro Chip (11-Core CPU / 14-Core GPU)",
+            "Camera_Specs": "1080p FaceTime HD Camera",
+            "Battery": "Up to 18 Hours Battery Life",
+            "features": "M3 Pro Chip|Liquid Retina XDR|Space Black Finish|HDMI & SDXC Slot",
+            "reviews": json.dumps([
+                {"user": "Karthik R.", "rating": 5, "comment": "The M3 Pro chip renders 4K multi-cam timelines in Final Cut Pro effortlessly!", "date": "2026-07-28"}
+            ])
+        },
+        {
+            "parent_asin": 28,
+            "title": "Lenovo LOQ 15 Gaming Laptop (Intel Core i5-12450HX, RTX 3050 6GB, 16GB DDR5, 512GB SSD, 144Hz FHD)",
+            "Brand": "Lenovo",
+            "main_category": "Laptops & PCs",
+            "categories": "Laptops & PCs|Lenovo|LOQ|Gaming|Laptop|RTX3050",
+            "description": "Lenovo LOQ 15IAX9 gaming laptop powered by 12th Gen Intel Core i5-12450HX processor, NVIDIA GeForce RTX 3050 6GB GDDR6 graphics, 16GB DDR5 RAM, 512GB PCIe 4.0 SSD, 15.6-inch FHD 144Hz 100% sRGB display, and G-SYNC.",
+            "price": 59990,
+            "Original_Price": 78990,
+            "Discount": "24% OFF",
+            "average_rating": 4.7,
+            "rating_number": 2340,
+            "store": "Lenovo Store",
+            "Image_URL": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop&q=80",
+            "Ram_Storage": "16GB DDR5 RAM | 512GB M.2 PCIe SSD",
+            "Processor": "12th Gen Intel Core i5-12450HX",
+            "Camera_Specs": "720p HD Camera with E-shutter",
+            "Battery": "60Whr Battery with 170W Fast Charger",
+            "features": "RTX 3050 6GB|144Hz 100% sRGB|LA1 AI Chip|DDR5 RAM",
+            "reviews": json.dumps([
+                {"user": "Saurabh Sharma", "rating": 5, "comment": "Best gaming laptop under 60k! 6GB VRAM on RTX 3050 runs GTA V and Valorant smoothly.", "date": "2026-07-15"}
+            ])
+        },
+        {
+            "parent_asin": 29,
+            "title": "ASUS TUF Gaming F15 Laptop (Intel Core i5-11400H, RTX 3050 4GB, 16GB RAM, 512GB SSD, 144Hz FHD)",
+            "Brand": "ASUS",
+            "main_category": "Laptops & PCs",
+            "categories": "Laptops & PCs|ASUS|TUF|Gaming|Laptop",
+            "description": "ASUS TUF Gaming F15 laptop featuring 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050 4GB GPU, 16GB DDR4 RAM, 512GB PCIe SSD, 15.6-inch FHD 144Hz IPS-level display, RGB backlit keyboard, and Military-grade MIL-STD-810H durability.",
+            "price": 52990,
+            "Original_Price": 74990,
+            "Discount": "29% OFF",
+            "average_rating": 4.6,
+            "rating_number": 4820,
+            "store": "ASUS Store India",
+            "Image_URL": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=80",
+            "Ram_Storage": "16GB DDR4 RAM | 512GB M.2 NVMe SSD",
+            "Processor": "11th Gen Intel Core i5-11400H",
+            "Camera_Specs": "720p HD Camera",
+            "Battery": "48Whr Battery",
+            "features": "144Hz FHD Display|RTX 3050 4GB|Military Grade Durability|RGB Keyboard",
+            "reviews": json.dumps([
+                {"user": "Praveen V.", "rating": 5, "comment": "Durable build quality and handles college coding and heavy gaming easily.", "date": "2026-06-30"}
+            ])
+        },
+        {
+            "parent_asin": 30,
+            "title": "Acer Nitro V 15 Gaming Laptop (Intel Core i5-13420H, RTX 4050 6GB, 16GB DDR5, 512GB SSD, 144Hz FHD)",
+            "Brand": "Acer",
+            "main_category": "Laptops & PCs",
+            "categories": "Laptops & PCs|Acer|Nitro|Gaming|Laptop|RTX4050",
+            "description": "Acer Nitro V 15 gaming laptop powered by 13th Gen Intel Core i5-13420H processor, NVIDIA GeForce RTX 4050 6GB GDDR6 graphics with DLSS 3, 16GB DDR5 RAM, 512GB Gen4 SSD, 15.6-inch 144Hz IPS display, and Dual-fan cooling.",
+            "price": 62990,
+            "Original_Price": 79999,
+            "Discount": "21% OFF",
+            "average_rating": 4.7,
+            "rating_number": 1890,
+            "store": "Acer Official Store",
+            "Image_URL": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop&q=80",
+            "Ram_Storage": "16GB DDR5 RAM | 512GB PCIe Gen4 SSD",
+            "Processor": "13th Gen Intel Core i5-13420H",
+            "Camera_Specs": "720p HD Camera with Temporal Noise Reduction",
+            "Battery": "57Whr Battery",
+            "features": "RTX 4050 6GB DLSS3|13th Gen i5|144Hz IPS Screen|Dual Fan Thermal Control",
+            "reviews": json.dumps([
+                {"user": "Rohan M.", "rating": 5, "comment": "DLSS 3 frame generation gives massive boost in FPS for Cyberpunk and Forza Horizon 5!", "date": "2026-07-22"}
+            ])
+        },
+        {
+            "parent_asin": 31,
+            "title": "HP Victus 15 Gaming Laptop (AMD Ryzen 5 5600H, RTX 3050 4GB, 16GB RAM, 512GB SSD, 144Hz FHD)",
+            "Brand": "HP",
+            "main_category": "Laptops & PCs",
+            "categories": "Laptops & PCs|HP|Victus|Gaming|Laptop",
+            "description": "HP Victus 15 gaming laptop featuring AMD Ryzen 5 5600H 6-core processor, NVIDIA GeForce RTX 3050 4GB GPU, 16GB DDR4 RAM, 512GB PCIe NVMe SSD, 15.6-inch FHD 144Hz anti-glare display, and B&O tuned audio.",
+            "price": 49990,
+            "Original_Price": 68990,
+            "Discount": "27% OFF",
+            "average_rating": 4.5,
+            "rating_number": 3100,
+            "store": "HP Store India",
+            "Image_URL": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&auto=format&fit=crop&q=80",
+            "Ram_Storage": "16GB DDR4 RAM | 512GB M.2 PCIe SSD",
+            "Processor": "AMD Ryzen 5 5600H (6 Cores / 12 Threads)",
+            "Camera_Specs": "HP Wide Vision 720p HD Camera",
+            "Battery": "52.5Whr Battery with HP Fast Charge",
+            "features": "Ryzen 5 5600H|RTX 3050 4GB|144Hz Display|Audio by Bang & Olufsen",
+            "reviews": json.dumps([
+                {"user": "Aditya K.", "rating": 5, "comment": "Sleek subtle design that doesn't scream gamer. Great for office and gaming.", "date": "2026-07-10"}
+            ])
+        },
+        {
+            "parent_asin": 32,
+            "title": "Dell G15 5530 Gaming Laptop (Intel Core i5-13450HX, RTX 3050 6GB, 16GB DDR5, 1TB SSD, 120Hz FHD)",
+            "Brand": "Dell",
+            "main_category": "Laptops & PCs",
+            "categories": "Laptops & PCs|Dell|G15|Gaming|Laptop",
+            "description": "Dell G15 5530 gaming laptop engineered with Alienware-inspired thermal design, 13th Gen Intel Core i5-13450HX processor, NVIDIA GeForce RTX 3050 6GB, 16GB DDR5 RAM, 1TB PCIe NVMe SSD, and 15.6-inch FHD 120Hz display.",
+            "price": 71990,
+            "Original_Price": 89990,
+            "Discount": "20% OFF",
+            "average_rating": 4.6,
+            "rating_number": 1120,
+            "store": "Dell Official Store",
+            "Image_URL": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=80",
+            "Ram_Storage": "16GB DDR5 RAM | 1TB PCIe NVMe SSD",
+            "Processor": "13th Gen Intel Core i5-13450HX",
+            "Camera_Specs": "720p HD Camera with Dual Microphones",
+            "Battery": "56Whr Battery",
+            "features": "Alienware Cooling Tech|RTX 3050 6GB|1TB SSD|Game Shift Key",
+            "reviews": json.dumps([
+                {"user": "Deepak N.", "rating": 5, "comment": "Alienware cooling tech keeps thermals under control. 1TB SSD space is a big plus.", "date": "2026-07-08"}
+            ])
+        },
 
         # --- CAMERAS & PHOTOGRAPHY (7) ---
         {
